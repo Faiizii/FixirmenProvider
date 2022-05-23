@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.fixirman.provider.view.activity.AppointmentScheduleActivity" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:background="@color/bg_screen"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentInsetStart="0dp"
+                app:layout_constraintTop_toTopOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btn_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back"
+                        app:backgroundTint="@color/white"
+                        app:fabSize="mini"
+                        android:layout_marginStart="4dp"
+                        android:onClick="@{(v)->activity.onClick(v)}"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Book an Appointment"
+                        android:layout_marginStart="16dp"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/btn_back"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/toolBar"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/toolBar">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/layout_subCategories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        app:cardElevation="4dp"
+                        android:onClick="@{(v)->activity.onClick(v)}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+                        <TextView
+                            android:id="@+id/tv_subCategories"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select Services"
+                            android:drawableEnd="@drawable/ic_next"
+                            android:padding="16dp"
+                            android:onClick="@{(v)->activity.onClick(v)}"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mb_bookNow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Book Now"
+                        android:textColor="@color/colorAccent"
+                        android:fontFamily="@font/rokkitt"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="16dp"
+                        app:strokeColor="@color/colorAccent"
+                        app:strokeWidth="1dp"
+                        android:layout_marginStart="8dp"
+                        android:onClick="@{(v)->activity.onClick(v)}"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layout_subCategories"/>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/mb_schedule"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Schedule"
+                        android:textColor="@color/colorAccent"
+                        android:fontFamily="@font/rokkitt"
+                        android:textAllCaps="false"
+                        android:onClick="@{(v)->activity.onClick(v)}"
+                        app:strokeColor="@color/colorAccent"
+                        app:strokeWidth="1dp"
+                        android:layout_marginEnd="8dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/mb_bookNow"/>
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/layout_schedule"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/mb_bookNow">
+                        <TextView
+                            android:id="@+id/tv_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Available dates"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/rokkitt"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_dates"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            android:orientation="horizontal"
+                            android:layout_margin="8dp"
+                            tools:listitem="@layout/vh_day_date"
+                            app:layout_constraintTop_toBottomOf="@id/tv_date"/>
+                        <TextView
+                            android:id="@+id/tv_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Available time"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/rokkitt"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            app:layout_constraintTop_toBottomOf="@id/rv_dates"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            android:orientation="horizontal"
+                            app:spanCount="2"
+                            android:layout_margin="8dp"
+                            tools:listitem="@layout/vh_time_slot"
+                            app:layout_constraintTop_toBottomOf="@id/tv_time"/>
+                        <TextView
+                            android:id="@+id/tv_selectAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Select Address"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/rokkitt"
+                            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            app:layout_constraintTop_toBottomOf="@id/rv_time"
+                            app:layout_constraintStart_toStartOf="parent"/>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/layout_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            app:cardElevation="4dp"
+                            android:onClick="@{(v)->activity.onClick(v)}"
+                            app:layout_constraintTop_toBottomOf="@id/tv_selectAddress">
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp">
+
+                                <TextView
+                                    android:id="@+id/tv_currentLocation"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Current Location"
+                                    android:layout_marginTop="16dp"
+                                    android:paddingStart="16dp"
+                                    android:paddingEnd="16dp"
+                                    android:paddingTop="16dp"
+                                    android:fontFamily="@font/rokkitt"
+                                    android:textAlignment="center"
+                                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+                                <TextView
+                                    android:id="@+id/tv_locationChange"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Tap to change"
+                                    android:fontFamily="@font/rokkitt"
+                                    android:textAlignment="center"
+                                    android:paddingBottom="16dp"
+                                    style="@style/TextAppearance.MaterialComponents.Caption"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@id/tv_currentLocation"/>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/layout_schedule"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->activity.onClick(v)}"
+                android:text="Confirm"
+                android:fontFamily="@font/rokkitt"
+                android:textAllCaps="false"
+                android:ems="12"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+            <ProgressBar
+                android:visibility="gone"
+                android:id="@+id/pb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
